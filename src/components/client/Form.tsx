@@ -1,15 +1,18 @@
 "use client";
 
-import { credentialLogin } from "@/actions/login";
+import { loginHandler } from "@/actions/login";
 
 const LoginForm = () => {
   return (
     <form
       action={async (formData) => {
-        const email = formData.get("email") as string | undefined;
-        const password = formData.get("password") as string | undefined;
-        if (!email || !password) throw new Error("Enter email and pass");
-        await credentialLogin(email, password);
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+        if (!email || !password) alert("Enter email and pass");
+        const res = await loginHandler(email, password);
+        console.log(res);
+
+        // if (res.) console.log("login successful");
       }}
     >
       email

@@ -1,7 +1,7 @@
 "use server";
 import { signIn } from "@/auth";
 
-const loginHandler = async (email: string, password: string) => {
+export const loginHandler = async (email: string, password: string) => {
   try {
     console.log("logging in from login handler in login.tsx");
 
@@ -9,8 +9,8 @@ const loginHandler = async (email: string, password: string) => {
       email,
       password,
     });
+    return { msg: "login successful", statusCode: 200 };
   } catch (error: any) {
-    return error.message;
+    return { msg: error.message, statusCode: 404 };
   }
 };
-export { loginHandler as credentialLogin };
