@@ -12,7 +12,12 @@ const Login = async () => {
   return (
     <div>
       <LoginForm />
-      <form action="">
+      <form
+        action={async () => {
+          "use server";
+          await signIn("google");
+        }}
+      >
         <button type="submit">login with google</button>
       </form>
     </div>

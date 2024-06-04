@@ -8,7 +8,9 @@ export const loginHandler = async (email: string, password: string) => {
     await signIn("credentials", {
       email,
       password,
+      redirect: false,
     });
+
     return { msg: "login successful", statusCode: 200 };
   } catch (error: any) {
     return { msg: error.message, statusCode: 404 };

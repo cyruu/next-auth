@@ -3,7 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import { connect } from "./app/dbconfig/dbconfig";
 import User from "./app/model/userModel";
 import { pages } from "next/dist/build/templates/app-page";
-
+import GoogleProvider from "next-auth/providers/google";
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
@@ -25,6 +25,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         return { name: user.name, email: user.email, id: user._id };
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
   pages: {
